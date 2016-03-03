@@ -29,7 +29,23 @@ function leeLinea(input,func){
 
 
 function func(data){
-	console.log("Linea: "+data);
+	//console.log("Linea: "+data);
+
+	var index = data.indexOf(' ');
+	var resto2=data;
+	var aData=[];
+
+	while(index > -1){
+		var parte= resto2.substring(0,index);
+		resto2=resto2.substring(index+1);
+		if(parte.length>0){
+			aData.push(parte);
+		}
+		index = resto2.indexOf(' ');
+	}
+
+	console.log(aData);
+
 }
 
 

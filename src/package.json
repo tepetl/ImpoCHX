@@ -1,0 +1,25 @@
+{
+  "name": "impochx",
+  "version": "1.0.0",
+  "description": "Importador de CHX",
+  "main": "importador_chx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tepetl/ImpoCHX.git"
+  },
+  "keywords": [
+    "CHX"
+  ],
+  "author": "AAFR, EGL",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tepetl/ImpoCHX/issues"
+  },
+  "homepage": "https://github.com/tepetl/ImpoCHX#readme",
+  "dependencies": {
+    "pg": "^4.5.1"
+  }
+}
