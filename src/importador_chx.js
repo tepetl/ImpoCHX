@@ -1,4 +1,13 @@
 var fs = require("fs");
+var pg = require('pg');
+
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/MONITOREO';
+
+var client = new pg.Client(connectionString);
+client.connect();
+
+
+
 
 function leeLinea(input,func){
 
@@ -27,7 +36,9 @@ function leeLinea(input,func){
 }
 
 
-
+/**
+* Parser de renglon a Array
+*/
 function func(data){
 	//console.log("Linea: "+data);
 
@@ -46,11 +57,17 @@ function func(data){
 
 	console.log(aData);
 
+	var fecha= new Date(aData[0]+","+aData[1]);
+	console.log("fecha: "+fecha);
+	console.log("UnixTime: "+fecha.getTime()/1000)
+
 }
 
 
 
-
+/**
+* Punto de entrada de la aplicacion
+*/
 process.argv.forEach(function(valor,index,array){
 
 	console.log(index+" "+valor);
