@@ -2,7 +2,7 @@ var fs = require("fs");
 var pg = require('pg');
 
 
-//var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/MONITOREO';
+//var connectionString = process.env.DATABASE_URL || 'postgres://popoca:b0b054@127.0.0.1:5432/MONITOREO';
 //var client = new pg.Client(connectionString);
 //client.connect();
 
@@ -58,14 +58,33 @@ function func(data){
 	console.log(aData);
 
 
-
-
 		var fecha= new Date(aData[0]+","+aData[1]);
-		console.log("fecha: "+fecha);
-		console.log("UnixTime: "+fecha.getTime()/1000+" isNaN: "+isNaN(fecha.getTime()/1000));
+		//console.log("fecha: "+fecha);
+		//console.log("UnixTime: "+fecha.getTime()/1000+" isNaN: "+isNaN(fecha.getTime()/1000));
 
+		if(!isNaN(fecha.getTime()/1000)){
+			console.log("fecha: "+fecha);
+		//var sid=fecha.getDay()+''+fecha.getFullYear()+''+fecha.getMonth()+''+fecha.getDay()+''+fecha.getHours()+fecha.getMinutes();
+		var sid=formateaID(fecha);
+		console.log("id: "+sid);
+	}
 }
 
+
+function formateaID(fecha){
+
+	var aux=fecha.getDate()*Math.pow(10,6);
+	aux+=fecha.getFullYear()*100;
+	aux+=fecha.getMonth();
+	aux*=100;
+	aux+=fecha.getDate();
+	aux*=100;
+	aux+=fecha.getHours();
+	aux*=100;
+	aux+=fecha.getMinutes();
+
+	return aux;
+}
 
 
 /**
