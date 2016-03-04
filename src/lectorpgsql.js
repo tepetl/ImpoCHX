@@ -1,4 +1,4 @@
-var pg=requiere('pg');
+var pg=require('pg');
 
 var connectionString = process.env.DATABASE_URL || 'postgres://127.0.0.1:5432/MONITOREO';
 
@@ -8,7 +8,7 @@ client.connect();
 var results = [];
 
 
-var query = client.query('SELECT * FROM monitoreo');
+var query = client.query('SELECT * FROM estacion_teo LIMIT 10');
 
 
 query.on('row', function(row) {
