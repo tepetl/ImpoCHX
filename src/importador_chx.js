@@ -88,7 +88,7 @@ function formateaID(fecha){
 
 
 /**
-* Punto de entrada de la aplicacion
+* Punto de entrada de la aplicación
 */
 process.argv.forEach(function(valor,index,array){
 
