@@ -64,11 +64,13 @@ function func(data){
 
 
 /**
-* funcion que convierte a la marac unica de tiempo
+* Función que convierte a la marca unica de tiempo para cada lectura
 */
 function formateaID(fecha){
 
-	var aux=fecha.getDate()*Math.pow(10,6);
+	var dia_anno=obtenDiaAnno(fecha);
+
+	var aux=dia_anno*Math.pow(10,6);
 	aux+=fecha.getFullYear()*100;
 	aux+=fecha.getMonth();
 	aux*=100;
@@ -80,6 +82,21 @@ function formateaID(fecha){
 
 	return aux;
 }
+
+/**
+* Función para recuperar el dia del año
+* @see http://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
+*/
+function obtenDiaAnno(fecha){
+
+	var start = new Date(fecha.getFullYear(), 0, 0);
+	var diff = fecha - start;
+	var oneDay = 1000 * 60 * 60 * 24;
+	return Math.floor(diff / oneDay);
+
+}
+
+
 
 
 /**
