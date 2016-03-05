@@ -1,10 +1,5 @@
 var fs = require("fs");
-var pg = require('pg');
-
-
-//var connectionString = process.env.DATABASE_URL || 'postgres://popoca:b0b054@127.0.0.1:5432/MONITOREO';
-//var client = new pg.Client(connectionString);
-//client.connect();
+var operdb= require("./conexdb.js");
 
 
 
@@ -28,7 +23,7 @@ function leeLinea(input,func){
 
 	input.on('end',function(){
 		if(resto.length >0){
-				func(resto);
+			func(resto);
 		}
 
 	});
@@ -58,19 +53,19 @@ function func(data){
 	console.log(aData);
 
 
-		var fecha= new Date(aData[0]+","+aData[1]);
-		//console.log("fecha: "+fecha);
-		//console.log("UnixTime: "+fecha.getTime()/1000+" isNaN: "+isNaN(fecha.getTime()/1000));
+	var fecha= new Date(aData[0]+","+aData[1]);
 
-		if(!isNaN(fecha.getTime()/1000)){
-			console.log("fecha: "+fecha);
-		//var sid=fecha.getDay()+''+fecha.getFullYear()+''+fecha.getMonth()+''+fecha.getDay()+''+fecha.getHours()+fecha.getMinutes();
+	if(!isNaN(fecha.getTime()/1000)){
+		console.log("fecha: "+fecha);
 		var sid=formateaID(fecha);
 		console.log("id: "+sid);
 	}
 }
 
 
+/**
+* funcion que convierte a la marac unica de tiempo
+*/
 function formateaID(fecha){
 
 	var aux=fecha.getDate()*Math.pow(10,6);
@@ -92,7 +87,7 @@ function formateaID(fecha){
 */
 process.argv.forEach(function(valor,index,array){
 
-	console.log(index+" "+valor);
+	//console.log(index+" "+valor);
 
 	if(index>=2){
 		var  input =fs.createReadStream(valor);
