@@ -12,3 +12,5 @@ var query=client.query('INSERT INTO estacion_chx (id,fecha_hora,dia,registro) VA
   console.log("Resultado: "+res);
 
 });
+
+query.on('end', client.end.bind(client));

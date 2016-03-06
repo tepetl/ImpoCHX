@@ -1,6 +1,6 @@
 var fs = require("fs");
+var dateFormat = require('dateformat');
 var operdb= require("./conexdb.js");
-
 
 
 
@@ -25,7 +25,7 @@ function leeLinea(input,func){
 		if(resto.length >0){
 			func(resto);
 		}
-
+		operdb.finaliza();
 	});
 
 }
@@ -50,15 +50,28 @@ function func(data){
 		index = resto2.indexOf(' ');
 	}
 
+	console.log("\n Array de datos origen: ");
 	console.log(aData);
 
 
 	var fecha= new Date(aData[0]+","+aData[1]);
 
 	if(!isNaN(fecha.getTime()/1000)){
-		console.log("fecha: "+fecha);
+		//console.log("fecha: "+fecha);
 		var sid=formateaID(fecha);
-		console.log("id: "+sid);
+		//console.log("id: "+sid);
+
+		var aDataD=[];
+		aDataD.push(sid);
+		//aDataD.push(dateFormat(fecha, "isoDateTime"));
+		aDataD.push(dateFormat(fecha, "yyyy-mm-dd\'T\'HH:MM:ss"));
+		aDataD.push(obtenDiaAnno(fecha));
+		aDataD.push(aData[2]);
+
+		console.log("\n Array de datos destino: ");
+		console.log(aDataD);
+
+		operdb.checaExInData(aDataD);
 	}
 }
 

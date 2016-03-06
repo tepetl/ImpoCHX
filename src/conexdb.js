@@ -3,8 +3,8 @@ var pg = require('pg');
 // https://github.com/brianc/node-postgres
 
 var connectionString = process.env.DATABASE_URL || 'postgres://popoca:b0b054@127.0.0.1:5432/MONITOREO';
-/*var client = new pg.Client(connectionString);
-client.connect();*/
+var client = new pg.Client(connectionString);
+client.connect();
 
 
 var operdb = {};
@@ -14,15 +14,30 @@ var operdb = {};
 */
 operdb.insertaData = function (data){
 
-
+  client.query('INSERT INTO estacion_chx (id,fecha_hora,dia,registro) VALUES ($1,$2,$3,$4)',data);
 
 };
 
 /**
-* Método que checa si existe el dato
+* Método que checa si no existe el dato y en su caso inserta el registro
 */
-operdb.checaEData = function (data){
+operdb.checaExInData = function (data){
 
+  var query=client.query("SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id="+data[0], function(err, result) {
+    console.log(result.rows[0]);
+    if(result.rows[0].cantidad==0){
+      operdb.insertaData(data);
+    }
+
+  });
+
+};
+
+/**
+* Método que cierra la conexion del cliente
+*/
+operdb.finaliza= function(){
+  client.end();
 };
 
 
