@@ -32,7 +32,9 @@ operdb.checaExInData = function (data){
 
   query.on('row',function(row){
     console.log(row);
-    operdb.insertaData(data);
+    if(row.cantidad==0){
+      operdb.insertaData(data);
+    }
   });
 
 }
