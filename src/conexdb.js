@@ -28,7 +28,7 @@ console.log("checaExInData");
 		console.error("Error: "+err);
 	}
 	console.log(result);
-/*	
+/*
     if(result.rows[0].cantidad==0){
       operdb.insertaData(data);
     }
@@ -36,6 +36,18 @@ console.log("checaExInData");
   });
 
 };
+
+operdb.checaExInData2 = function (data){
+  console.log("checaExInData2: "+data);
+
+  var query=client.query({text: "SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id=$1",values: data});
+
+  query.on('row',function(row){
+    assert.equal(1,row.cantidad);
+  });
+
+}
+
 
 /**
 * Método que cierra la conexion del cliente
