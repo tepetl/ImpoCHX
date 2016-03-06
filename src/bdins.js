@@ -22,3 +22,5 @@ operdb.checaExInData = function (data){
   });
 
 }
+
+exports.bdins = operdb;

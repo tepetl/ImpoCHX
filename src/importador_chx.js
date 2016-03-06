@@ -1,12 +1,14 @@
 var fs = require("fs");
 var dateFormat = require('dateformat');
 var operdb= require("./conexdb.js");
+var operdb2= require("./bdins.js");
+
 
 
 
 /**
- * Función que lee las lineas del archivo
- */
+* Función que lee las lineas del archivo
+*/
 function leeLinea(input,func){
 
 	var resto= '';
@@ -74,7 +76,8 @@ function func(data){
 		console.log("\n Array de datos destino: ");
 		console.log(aDataD);
 
-		operdb.operdb.checaExInData(aDataD);
+		//operdb.operdb.checaExInData(aDataD);
+		operdb2.bdins.checaExInData(aDataD);
 	}
 }
 
@@ -99,6 +102,7 @@ function formateaID(fecha){
 	return aux;
 }
 
+
 /**
 * Función para recuperar el dia del año
 * @see http://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
@@ -111,8 +115,6 @@ function obtenDiaAnno(fecha){
 	return Math.floor(diff / oneDay);
 
 }
-
-
 
 
 /**
