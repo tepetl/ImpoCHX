@@ -76,8 +76,8 @@ function func(data){
 		console.log("\n Array de datos destino: ");
 		console.log(aDataD);
 
-		//operdb.operdb.checaExInData(aDataD);
-		operdb2.bdins.checaExInData(aDataD);
+		operdb.operdb.checaExInData(aDataD);
+		//operdb2.bdins.checaExInData(aDataD);
 	}
 }
 
