@@ -4,7 +4,9 @@ var operdb= require("./conexdb.js");
 
 
 
-
+/**
+ * Función que lee las lineas del archivo
+ */
 function leeLinea(input,func){
 
 	var resto= '';

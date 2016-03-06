@@ -22,13 +22,17 @@ operdb.insertaData = function (data){
 * Método que checa si no existe el dato y en su caso inserta el registro
 */
 operdb.checaExInData = function (data){
-
+console.log("checaExInData");
   var query=client.query("SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id="+data[0], function(err, result) {
-    console.log(result.rows[0]);
+	if(err){
+		console.error("Error: "+err);
+	}
+	console.log(result);
+/*	
     if(result.rows[0].cantidad==0){
       operdb.insertaData(data);
     }
-
+*/
   });
 
 };
