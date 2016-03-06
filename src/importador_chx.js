@@ -4,6 +4,7 @@ var operdb= require("./conexdb.js");
 
 
 
+
 function leeLinea(input,func){
 
 	var resto= '';
@@ -25,7 +26,7 @@ function leeLinea(input,func){
 		if(resto.length >0){
 			func(resto);
 		}
-		operdb.finaliza();
+		operdb.operdb.finaliza();
 	});
 
 }
@@ -71,7 +72,7 @@ function func(data){
 		console.log("\n Array de datos destino: ");
 		console.log(aDataD);
 
-		operdb.checaExInData(aDataD);
+		operdb.operdb.checaExInData(aDataD);
 	}
 }
 
