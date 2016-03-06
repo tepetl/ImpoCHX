@@ -28,7 +28,7 @@ function leeLinea(input,func){
 		if(resto.length >0){
 			func(resto);
 		}
-		operdb.operdb.finaliza();
+		//operdb.operdb.finaliza();
 	});
 
 }

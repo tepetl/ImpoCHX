@@ -40,10 +40,14 @@ console.log("checaExInData");
 operdb.checaExInData2 = function (data){
   console.log("checaExInData2: "+data);
 
-  var query=client.query({text: "SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id=$1",values: data});
+	var valores=[];
+	valores.push(data[0]);
+
+  var query=client.query({text: "SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id=$1",values: valores});
 
   query.on('row',function(row){
-    assert.equal(1,row.cantidad);
+  	console.log(row); 
+	operdb.insertaData(data);
   });
 
 }
