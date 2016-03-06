@@ -18,36 +18,21 @@ operdb.insertaData = function (data){
 
 };
 
+
 /**
 * Método que checa si no existe el dato y en su caso inserta el registro
 */
 operdb.checaExInData = function (data){
-console.log("checaExInData");
-  var query=client.query("SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id="+data[0], function(err, result) {
-	if(err){
-		console.error("Error: "+err);
-	}
-	console.log(result);
-/*
-    if(result.rows[0].cantidad==0){
-      operdb.insertaData(data);
-    }
-*/
-  });
-
-};
-
-operdb.checaExInData2 = function (data){
   console.log("checaExInData2: "+data);
 
-	var valores=[];
-	valores.push(data[0]);
+  var valores=[];
+  valores.push(data[0]);
 
   var query=client.query({text: "SELECT COUNT(*) as cantidad FROM estacion_chx WHERE id=$1",values: valores});
 
   query.on('row',function(row){
-  	console.log(row); 
-	operdb.insertaData(data);
+    console.log(row);
+    operdb.insertaData(data);
   });
 
 }
