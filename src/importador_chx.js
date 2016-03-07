@@ -1,10 +1,16 @@
 var fs = require("fs");
 var dateFormat = require('dateformat');
-var operdb= require("./conexdb.js");
-var operdb2= require("./bdins.js");
+var pg = require('pg');
 
 
+var conString = "postgres://popoca:b0b054@127.0.0.1:5432/MONITOREO";
 
+var client = new pg.Client(conString);
+client.connect();
+
+query.on('end', function() {
+  client.end();
+});
 
 /**
 * Función que lee las lineas del archivo
@@ -30,7 +36,7 @@ function leeLinea(input,func){
 		if(resto.length >0){
 			func(resto);
 		}
-		//operdb.operdb.finaliza();
+
 	});
 
 }
@@ -76,10 +82,13 @@ function func(data){
 		console.log("\n Array de datos destino: ");
 		console.log(aDataD);
 
-		operdb.operdb.checaExInData(aDataD);
-		//operdb2.bdins.checaExInData(aDataD);
+		var q='DELETE FROM estacion_chx WHERE id='+aDataD[0]+
+		'; INSERT INTO estacion_chx (id,fecha_hora,dia,registro) VALUES ('+aDataD[0]+',\''+aDataD[1]+'\','+aDataD[2]+','+aDataD[3]+')';
+
+		client.query(q);
 	}
 }
+
 
 
 /**
