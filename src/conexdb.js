@@ -13,9 +13,7 @@ var operdb = {};
 * Método que inserta el dato
 */
 operdb.insertaData = function (data){
-
   client.query('INSERT INTO estacion_chx (id,fecha_hora,dia,registro) VALUES ($1,$2,$3,$4)',data);
-
 };
 
 
@@ -36,8 +34,7 @@ operdb.checaExInData = function (data){
       operdb.insertaData(data);
     }
   });
-
-}
+};
 
 
 /**
