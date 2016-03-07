@@ -39,11 +39,11 @@ function leeLinea(input,func){
 
 
 		query.on('row', function(row) {
-		  console.log("Se insertaron: "+row.cantidad);
+			console.log("Se insertaron: "+row.cantidad);
 		});
 
 		query.on('end', function() {
-		  client.end();
+			client.end();
 		});
 
 
