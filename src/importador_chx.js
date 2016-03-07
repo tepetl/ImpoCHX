@@ -8,9 +8,7 @@ var conString = "postgres://popoca:b0b054@127.0.0.1:5432/MONITOREO";
 var client = new pg.Client(conString);
 client.connect();
 
-query.on('end', function() {
-  client.end();
-});
+
 
 /**
 * Función que lee las lineas del archivo
@@ -126,6 +124,10 @@ function obtenDiaAnno(fecha){
 }
 
 
+
+
+
+
 /**
 * Punto de entrada de la aplicación
 */
@@ -137,4 +139,16 @@ process.argv.forEach(function(valor,index,array){
 		var  input =fs.createReadStream(valor);
 		leeLinea(input,func);
 	}
+});
+
+
+var query = client.query("SELECT count(*) as cantidad FROM estacion_chx");
+
+
+query.on('row', function(row) {
+  console.log("Se insertaron: "+row.cantidad);
+});
+
+query.on('end', function() {
+  client.end();
 });
