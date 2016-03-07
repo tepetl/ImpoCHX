@@ -35,6 +35,18 @@ function leeLinea(input,func){
 			func(resto);
 		}
 
+		var query = client.query("SELECT count(*) as cantidad FROM estacion_chx");
+
+
+		query.on('row', function(row) {
+		  console.log("Se insertaron: "+row.cantidad);
+		});
+
+		query.on('end', function() {
+		  client.end();
+		});
+
+
 	});
 
 }
@@ -139,16 +151,4 @@ process.argv.forEach(function(valor,index,array){
 		var  input =fs.createReadStream(valor);
 		leeLinea(input,func);
 	}
-});
-
-
-var query = client.query("SELECT count(*) as cantidad FROM estacion_chx");
-
-
-query.on('row', function(row) {
-  console.log("Se insertaron: "+row.cantidad);
-});
-
-query.on('end', function() {
-  client.end();
 });
