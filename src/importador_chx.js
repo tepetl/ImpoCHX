@@ -36,14 +36,13 @@ function leeLinea(input,func){
 		}
 
 		var query = client.query("SELECT count(*) as cantidad FROM estacion_chx");
-
-
+		
 		query.on('row', function(row) {
-		  console.log("Se insertaron: "+row.cantidad);
+			console.log("Hay tantos registros: "+row.cantidad);
 		});
 
 		query.on('end', function() {
-		  client.end();
+			client.end();
 		});
 
 
@@ -78,13 +77,12 @@ function func(data){
 	var fecha= new Date(aData[0]+","+aData[1]);
 
 	if(!isNaN(fecha.getTime()/1000)){
-		//console.log("fecha: "+fecha);
+
 		var sid=formateaID(fecha);
-		//console.log("id: "+sid);
+
 
 		var aDataD=[];
 		aDataD.push(sid);
-		//aDataD.push(dateFormat(fecha, "isoDateTime"));
 		aDataD.push(dateFormat(fecha, "yyyy-mm-dd\'T\'HH:MM:ss"));
 		aDataD.push(obtenDiaAnno(fecha));
 		aDataD.push(aData[2]);
@@ -98,7 +96,6 @@ function func(data){
 		client.query(q);
 	}
 }
-
 
 
 /**
@@ -136,16 +133,11 @@ function obtenDiaAnno(fecha){
 }
 
 
-
-
-
-
 /**
 * Punto de entrada de la aplicación
 */
 process.argv.forEach(function(valor,index,array){
 
-	//console.log(index+" "+valor);
 
 	if(index>=2){
 		var  input =fs.createReadStream(valor);
